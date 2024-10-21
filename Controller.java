@@ -44,7 +44,6 @@ public class Controller {
         if (!usuario.isAdmin()) {
             throw new SecurityException("Somente administradores podem cadastrar eventos.");
         }
-
         Evento evento = new Evento(nome, descricao, data);
         eventos.add(evento);
         return evento;

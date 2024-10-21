@@ -91,6 +91,14 @@ public class Usuario{
         }
         return false;
     }
+    // Metodo para remover cartao
+    public boolean removeCartao(Cartao cartao){
+        if(this.cartoes.contains(cartao)) {
+            this.cartoes.remove(cartao);
+            return true;
+        }
+        return false;
+    }
 
     // Metodo para avaliar um evento;
     public boolean avaliarEvento(Evento evento,double nota,String comentario){
