@@ -1,11 +1,9 @@
+
 import Classes.*;
 import org.junit.jupiter.api.Test;
 
-import javax.naming.ldap.Control;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.image.renderable.ContextualRenderedImageFactory;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -146,3 +144,4 @@ public class UsuarioTest {
         assertFalse(usuario.editarPerfil("telefone", "1234567890"), "A edição de um atributo inválido deve retornar false.");
     }
 }
+*/
