@@ -1,4 +1,3 @@
-/*
 import Classes.*;
 import org.junit.jupiter.api.Test;
 
@@ -221,4 +220,3 @@ public class ControllerTest {
         assertEquals(1, ingressos.size());
     }
 }
-*/

@@ -1,4 +1,3 @@
-/*
 import Classes.Avaliacao;
 import Classes.Usuario;
 import org.junit.jupiter.api.Test;
@@ -31,4 +30,3 @@ class AvaliacaoTest {
         assertEquals(usuario, avaliacao.getUsuario());
     }
 }
-*/

@@ -16,10 +16,7 @@ e estou ciente que estes trechos não serão considerados para fins de avaliaç�
 */
 
 package Classes;
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Evento {
     private String nome;
@@ -56,6 +53,12 @@ public class Evento {
     public void setStatus(boolean status) {
         this.status = status;
     }
+    public List<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
+    }
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
+    }
 
     // Construtor
     public Evento(String nome, String descricao, Date data) {
@@ -64,6 +67,7 @@ public class Evento {
         this.data = data;
         this.assentos = new HashMap<>();
         this.status = true;
+        this.avaliacoes = new ArrayList<>();
     }
 
     public boolean isAtivo() {
@@ -108,4 +112,26 @@ public class Evento {
         }
         return assentosDisponiveis;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true; // Se for o mesmo objeto na memória
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false; // Se o objeto comparado for null ou não for da mesma classe
+        }
+
+        Evento other = (Evento) obj;
+
+        // Compara os atributos relevantes para a identidade do evento
+        return this.nome.equals(other.nome) &&
+                this.descricao.equals(other.descricao) &&
+                this.data.equals(other.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, descricao, data);
+    }
+
 }

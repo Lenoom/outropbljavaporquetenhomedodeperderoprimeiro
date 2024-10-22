@@ -26,15 +26,18 @@ public class Controller {
 
     // Cadastrar um usuário
     public Usuario cadastrarUsuario(String login, String senha, String nome, String cpf, String email, boolean isAdmin) {
-        Usuario usuario = new Usuario(login, senha, nome, email, cpf, isAdmin);
+        Usuario usuario = new Usuario(login, senha, nome, cpf, email, isAdmin);
         usuarios.add(usuario);
         return usuario;
     }
 
     // Metodo para avaliar um evento.
     public boolean avaliarEvento(Usuario usuario, String eventoNome, double nota, String comentario){
+
         Evento evento = buscarEvento(eventoNome);
-        if(evento != null){
+        Date data = new Date();
+
+        if(evento != null && data.before(evento.getData())){
             return usuario.avaliarEvento(evento,nota,comentario);
         }
         return false; // Caso o evento não exista.
@@ -50,11 +53,13 @@ public class Controller {
     }
 
     // Metodo para adicionar novo assento
-    public void adicionarAssentoEvento(String nomeEvento, String assento) {
+    public boolean adicionarAssentoEvento(Usuario user,String nomeEvento, String assento) {
         Evento evento = buscarEvento(nomeEvento);
-        if (evento != null) {
+        if (evento != null && user.isAdmin()) {
             evento.adicionarAssento(assento);
+            return true;
         }
+        return false;
     }
 
     // Metodo para comprar um ingresso
@@ -63,7 +68,7 @@ public class Controller {
         Date atualData = new Date();
         if (evento != null && evento.getAssentosDisponiveis().contains(assento) && atualData.before(evento.getData())) {
             Compra buy = new Compra();
-            return (buy.realizarCompra(usuario,evento,assento,cartao));
+            return buy.realizarCompra(usuario,evento,assento,cartao);
         }
         return false;
     }
@@ -88,6 +93,11 @@ public class Controller {
             }
         }
         return eventosDisponiveis;
+    }
+
+    // Listar todos os Eventos;
+    public List<Evento> listarEventos(){
+        return eventos;
     }
 
     // Metodo para listar ingressos comprados de um usuário

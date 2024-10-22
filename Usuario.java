@@ -103,13 +103,24 @@ public class Usuario{
     // Metodo para avaliar um evento;
     public boolean avaliarEvento(Evento evento,double nota,String comentario){
         Date atualData = new Date();
-        if ( (evento != null) && (atualData.after(evento.getData())) ){
+        if ( (evento != null) && (atualData.after(evento.getData())) && possuiEvento(evento)){
                 Avaliacao avaliacao = new Avaliacao(nota, comentario, this);
                 evento.adicionarAvaliacao(avaliacao);
                 return true;
         }
         return false;
     }
+
+    // Verifica se o usuário possui um ingresso para um evento específico
+    public boolean possuiEvento(Evento evento) {
+        for(Ingresso ingresso: this.getIngressos()){
+            if(ingresso.getEvento().equals(evento)) {
+                return true; // Encerra o loop ao encontrar o evento
+            }
+        }
+        return false; // Retorna false se não encontrar o evento
+    }
+
 
     // Metodo para editar perfil.
     public boolean editarPerfil(String atributo, String novo) {

@@ -1,4 +1,3 @@
-
 import Classes.*;
 import org.junit.jupiter.api.Test;
 
@@ -104,13 +103,18 @@ public class UsuarioTest {
     public void testAvaliarEvento() {
         Controller controller = new Controller();
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2023, Calendar.JANUARY, 1); // Data futura
+        calendar.set(2023, Calendar.JANUARY, 1);
         Date data = calendar.getTime();
 
         Usuario usuario = controller.cadastrarUsuario("johndoe", "senha123", "John Doe", "12345678901", "john.doe@example.com", false);
+        usuario.addCartao("1234432112344321");
+        Cartao cartao = usuario.getCartoes().getFirst();
+
         Usuario admin = controller.cadastrarUsuario("admin", "blabla", "John Does", "30128763749", "john.does@example.com", true);
-        controller.cadastrarEvento(admin,"Show Teste","Excelente Show", data);
-        Evento evento = controller.listarEventos().getFirst();
+        Evento evento = controller.cadastrarEvento(admin,"Show Teste","Excelente Show", data);
+        controller.adicionarAssentoEvento(admin,"Show Teste", "A1");
+
+        usuario.getIngressos().add(new Ingresso(evento,100.0f,"A1"));
 
         assertTrue(usuario.avaliarEvento(evento, 5.0, "Excelente show!"), "Deve ser possível avaliar um evento no futuro.");
         assertEquals(1, evento.getAvaliacoes().size(), "O evento deve ter 1 avaliação.");
@@ -144,4 +148,3 @@ public class UsuarioTest {
         assertFalse(usuario.editarPerfil("telefone", "1234567890"), "A edição de um atributo inválido deve retornar false.");
     }
 }
-*/

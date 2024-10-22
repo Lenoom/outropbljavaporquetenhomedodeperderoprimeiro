@@ -31,7 +31,7 @@ public class Ingresso {
         this.evento = evento;
         this.preco = preco;
         this.assento = assento;
-        isAtivo = true;
+        this.isAtivo = true;
     }
 
     // Metodo para verificar se o ingresso ainda é válido (ativo)

@@ -1,4 +1,3 @@
-/*
 import Classes.*;
 import org.junit.jupiter.api.Test;
 
@@ -115,4 +114,3 @@ public class IngressoTest {
         assertEquals(ingresso1.hashCode(), ingresso2.hashCode());
     }
 }
- */
